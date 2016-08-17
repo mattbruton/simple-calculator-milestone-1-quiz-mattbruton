@@ -21,20 +21,20 @@ namespace SimpleCalculator
                     ResultFromEval = v1 - v2;
                     break;
                 case '/':
-                    ResultFromEval = v1 / v2;
-                    break;
-                case '*':
-                    ResultFromEval = v1 * v2;
-                    break;
-                case '%':
                     try
                     {
-                        ResultFromEval = v1 % v2;
+                        ResultFromEval = v1 / v2;
                     }
                     catch (DivideByZeroException)
                     {
                         Console.WriteLine("You can't divide by zero.");
                     }
+                    break;
+                case '*':
+                    ResultFromEval = v1 * v2;
+                    break;
+                case '%':
+                    ResultFromEval = v1 % v2;
                     break;
                 default:
                     break;

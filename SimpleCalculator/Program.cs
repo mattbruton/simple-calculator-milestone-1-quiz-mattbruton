@@ -10,7 +10,8 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
-         
+            Evaluator test = new Evaluator();
+            test.EvaluateUserInput(2, 0, '/');
         }
     }
 }
