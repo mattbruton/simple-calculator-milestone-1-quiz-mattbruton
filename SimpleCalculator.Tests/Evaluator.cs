@@ -64,5 +64,15 @@ namespace SimpleCalculator.Tests
 
             Assert.AreEqual(expectedQuotient, test.ResultFromEval);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(DivideByZeroException))]
+        public void EvaluatorThrowsDBZExceptionWhenDividingByZero()
+        {
+            Evaluator test = new Evaluator();
+            test.EvaluateUserInput(2, 0, '/');
+
+            Assert.Fail();
+        }
     }
 }
