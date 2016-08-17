@@ -10,8 +10,22 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
+            Expression testExp = new Expression();
             Evaluator test = new Evaluator();
-            test.EvaluateUserInput(2, 0, '/');
+
+            testExp.CheckIfUserInputIsValid("5/2");
+            if (testExp.IsValidInput)
+            {
+                test.EvaluateUserInput(testExp.Value_1, testExp.Value_2, testExp.Operator);
+                Console.WriteLine("You entered: {0} {1} {2} ", testExp.Value_1, testExp.Operator, testExp.Value_2);
+                Console.WriteLine(test.ResultFromEval);
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+            }
+
+            Console.ReadKey();
         }
     }
 }
