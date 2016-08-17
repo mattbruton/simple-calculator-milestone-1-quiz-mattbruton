@@ -8,9 +8,30 @@ namespace SimpleCalculator
 {
     public class Evaluator
     {
-        public int ValueAfterEvaluation(int v1, int v2, char op)
+        public int ResultFromEval { get; private set; }
+
+        public void EvaluateUserInput(int v1, int v2, char op)
         {
-            return 1;
+            switch (op)
+            {
+                case '+':
+                    ResultFromEval = v1 + v2;
+                    break;
+                case '-':
+                    ResultFromEval = v1 - v2;
+                    break;
+                case '/':
+                    ResultFromEval = v1 / v2;
+                    break;
+                case '*':
+                    ResultFromEval = v1 * v2;
+                    break;
+                case '%':
+                    ResultFromEval = v1 % v2;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
