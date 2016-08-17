@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
-    class Evaluator
+    public class Evaluator
     {
+        public int ValueAfterEvaluation(int v1, int v2, char op)
+        {
+            return 1;
+        }
     }
 }

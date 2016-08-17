@@ -51,11 +51,11 @@ namespace SimpleCalculator.Tests
         public void AssertCanCaptureWithExtraSpacingOnBothSidesOfOperator()
         {
             Expression test = new Expression();
-            test.CheckInputForPattern("2       +      2");
+            test.CheckInputForPattern("2       -      2");
 
             Assert.AreEqual(2, test.Value_1);
             Assert.AreEqual(2, test.Value_2);
-            Assert.AreEqual('+', test.Operator);
+            Assert.AreEqual('-', test.Operator);
         }
 
         [TestMethod]
@@ -72,6 +72,22 @@ namespace SimpleCalculator.Tests
         {
             Expression test = new Expression();
             test.CheckInputForPattern("2^2");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void FormatExeptionThrownOnMissingTerm()
+        {
+            Expression test = new Expression();
+            test.CheckInputForPattern("+2");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void FormatExeptionThrownOnMissingOperatorTerm()
+        {
+            Expression test = new Expression();
+            test.CheckInputForPattern("12");
         }
     }
 }

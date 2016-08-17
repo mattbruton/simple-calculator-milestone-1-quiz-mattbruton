@@ -9,7 +9,7 @@ namespace SimpleCalculator
         public int Value_2 { get; private set; }
         public char Operator { get; private set; }
 
-        private Regex regexPattern = new Regex(@"^(\s*(?<Value1>\d+)\s*(?<Operator>[+-/%*]{1})\s*(?<Value2>\d+)\s*)$");
+        private Regex regexPattern = new Regex(@"^(\s*(?<Value1>\d+)\s*(?<Operator>[+-/%*])\s*(?<Value2>\d+)\s*)$");
 
         public void CheckInputForPattern(string input)
         {
