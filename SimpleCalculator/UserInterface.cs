@@ -12,7 +12,22 @@ namespace SimpleCalculator
 
         public string Prompt()
         {
-            return string.Format("[{0}]>", PromptCounter.ToString());
+            return string.Format("[{0}]> ", PromptCounter.ToString());
+        }
+
+        public void HandleUserInput(string input)
+        {
+            switch (input)
+            {
+                case "exit":
+                case "quit":
+                    {
+                        Environment.Exit(0);
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
     }
 }
