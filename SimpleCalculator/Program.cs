@@ -12,6 +12,7 @@ namespace SimpleCalculator
         {
             Expression testExp = new Expression();
             Evaluator test = new Evaluator();
+            UserInterface UI = new UserInterface();
 
             testExp.CheckIfUserInputIsValid("5/0");
             if (testExp.IsValidInput && test.CannotEvaluate)
@@ -24,6 +25,10 @@ namespace SimpleCalculator
             {
                 Console.WriteLine(ErrorMessages.InvalidInput());
             }
+
+            Console.WriteLine(UI.Prompt());
+            UI.PromptCounter++;
+            Console.WriteLine(UI.Prompt());
 
             Console.ReadKey();
         }
