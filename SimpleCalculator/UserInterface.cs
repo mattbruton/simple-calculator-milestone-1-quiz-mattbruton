@@ -27,6 +27,8 @@ namespace SimpleCalculator
                 case "exit":
                 case "quit":
                     {
+                        Console.WriteLine("Bye!");
+                        Console.ReadKey();
                         Environment.Exit(0);
                         break;
                     }
