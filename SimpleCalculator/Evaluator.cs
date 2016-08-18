@@ -8,10 +8,6 @@ namespace SimpleCalculator
         Stack stack = new Stack();
 
         public string ResultFromEval { get; private set; }
-        public void ResetResult()
-        {
-            ResultFromEval = "";
-        }
 
         public void EvaluateUserInput(int v1, int v2, char op)
         {
