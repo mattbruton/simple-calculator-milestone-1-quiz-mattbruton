@@ -66,13 +66,23 @@ namespace SimpleCalculator.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DivideByZeroException))]
-        public void EvaluatorThrowsDBZExceptionWhenDividingByZero()
+        public void EvaluatorCatchesExceptionWhenDividingByZeroButHandlesItByChangingBoolValue()
         {
             Evaluator test = new Evaluator();
             test.EvaluateUserInput(2, 0, '/');
 
-            Assert.Fail();
+            Assert.AreEqual(true, test.CannotEvaluate);
+        }
+
+
+        // This shouldn't be a concern based on how the variables are passed into the method, but assuming the user supplied a non-operator character as their operator.
+        [TestMethod]
+        public void EvaluatorChangesBoolWhenItCannotEvaluateAnExpression()
+        {
+            Evaluator test = new Evaluator();
+            test.EvaluateUserInput(2, 0, 'b');
+
+            Assert.AreEqual(true, test.CannotEvaluate);
         }
     }
 }

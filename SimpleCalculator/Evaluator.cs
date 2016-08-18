@@ -1,42 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
     public class Evaluator
     {
         public int ResultFromEval { get; private set; }
+        public bool CannotEvaluate = false;
 
         public void EvaluateUserInput(int v1, int v2, char op)
         {
+            Stack stack = new Stack();
+            stack.SetLastExpression(v1, v2, op);
             switch (op)
             {
                 case '+':
                     ResultFromEval = v1 + v2;
+                    stack.SetLastAnswer(ResultFromEval);
                     break;
+
                 case '-':
                     ResultFromEval = v1 - v2;
+                    stack.SetLastAnswer(ResultFromEval);
                     break;
+
                 case '/':
                     try
                     {
                         ResultFromEval = v1 / v2;
+                        stack.SetLastAnswer(ResultFromEval);
                     }
                     catch (DivideByZeroException)
                     {
-                        Console.WriteLine("You can't divide by zero.");
+                        CannotEvaluate = true;
+                        break;
                     }
                     break;
+
                 case '*':
                     ResultFromEval = v1 * v2;
+                    stack.SetLastAnswer(ResultFromEval);
                     break;
+
                 case '%':
                     ResultFromEval = v1 % v2;
+                    stack.SetLastAnswer(ResultFromEval);
                     break;
+
                 default:
+                    CannotEvaluate = true;
                     break;
             }
         }

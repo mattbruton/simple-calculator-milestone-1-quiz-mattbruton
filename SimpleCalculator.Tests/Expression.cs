@@ -64,6 +64,8 @@ namespace SimpleCalculator.Tests
         {
             Expression test = new Expression();
             test.CheckInputForPattern("2+bad");
+
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -72,6 +74,8 @@ namespace SimpleCalculator.Tests
         {
             Expression test = new Expression();
             test.CheckInputForPattern("2^2");
+
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -80,6 +84,8 @@ namespace SimpleCalculator.Tests
         {
             Expression test = new Expression();
             test.CheckInputForPattern("+2");
+
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -88,6 +94,8 @@ namespace SimpleCalculator.Tests
         {
             Expression test = new Expression();
             test.CheckInputForPattern("12");
+
+            Assert.Fail();
         }
     }
 }

@@ -13,8 +13,8 @@ namespace SimpleCalculator
             Expression testExp = new Expression();
             Evaluator test = new Evaluator();
 
-            testExp.CheckIfUserInputIsValid("5/2");
-            if (testExp.IsValidInput)
+            testExp.CheckIfUserInputIsValid("5/0");
+            if (testExp.IsValidInput && test.CannotEvaluate)
             {
                 test.EvaluateUserInput(testExp.Value_1, testExp.Value_2, testExp.Operator);
                 Console.WriteLine("You entered: {0} {1} {2} ", testExp.Value_1, testExp.Operator, testExp.Value_2);
@@ -22,7 +22,7 @@ namespace SimpleCalculator
             }
             else
             {
-                Console.WriteLine("Invalid input.");
+                Console.WriteLine(ErrorMessages.InvalidInput());
             }
 
             Console.ReadKey();
