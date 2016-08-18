@@ -30,7 +30,7 @@ namespace SimpleCalculator
 
         public static string InvalidFormat()
         {
-            return "Please enter an integer, followed by an operator, and then another integer (ex. \"2 + 5\"";
+            return "Please enter an expression to evaluate, 'last' to see the last answer, 'lastp' to see the last entered command or expression, or type either 'quit' or 'exit' to end the application.";
         }
     }
 }

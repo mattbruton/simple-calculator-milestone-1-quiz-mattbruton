@@ -18,7 +18,7 @@ namespace SimpleCalculator.Tests
         public void StackCanSetLastAnswerProperty()
         {
             Stack test = new Stack();
-            test.SetLastAnswer(4);
+            test.SetLastAnswer("4");
 
             Assert.AreEqual("4", test.LastAnswer);
         }

@@ -19,7 +19,7 @@ namespace SimpleCalculator.Tests
         public void EvaluatorCanAddNumbers()
         {
             Evaluator test = new Evaluator();
-            int expectedSum = 4;
+            string expectedSum = "4";
             test.EvaluateUserInput(2, 2, '+');
 
             Assert.AreEqual(expectedSum, test.ResultFromEval);
@@ -29,7 +29,7 @@ namespace SimpleCalculator.Tests
         public void EvaluatorCanSubtractNumbers()
         {
             Evaluator test = new Evaluator();
-            int expectedDiff = 0;
+            string expectedDiff = "0";
             test.EvaluateUserInput(2, 2, '-');
 
             Assert.AreEqual(expectedDiff, test.ResultFromEval);
@@ -39,7 +39,7 @@ namespace SimpleCalculator.Tests
         public void EvaluatorCanFindModulus()
         {
             Evaluator test = new Evaluator();
-            int expectedRemainder = 0;
+            string expectedRemainder = "0";
             test.EvaluateUserInput(2, 2, '%');
 
             Assert.AreEqual(expectedRemainder, test.ResultFromEval);
@@ -49,7 +49,7 @@ namespace SimpleCalculator.Tests
         public void EvaluatorCanMultiplyNumbers()
         {
             Evaluator test = new Evaluator();
-            int expectedProduct = 4;
+            string expectedProduct = "4";
             test.EvaluateUserInput(2, 2, '*');
 
             Assert.AreEqual(expectedProduct, test.ResultFromEval);
@@ -59,30 +59,20 @@ namespace SimpleCalculator.Tests
         public void EvaluatorCanPerformIntegerDivision()
         {
             Evaluator test = new Evaluator();
-            int expectedQuotient = 1;
+            string expectedQuotient = "1";
             test.EvaluateUserInput(2, 2, '/');
 
             Assert.AreEqual(expectedQuotient, test.ResultFromEval);
         }
 
         [TestMethod]
-        public void EvaluatorCatchesExceptionWhenDividingByZeroButHandlesItByChangingBoolValue()
+        public void EvaluatorReturnsErrorMessageWhenDivideByZero()
         {
             Evaluator test = new Evaluator();
             test.EvaluateUserInput(2, 0, '/');
+            string testString = "You cannot divide by zero.";
 
-            Assert.AreEqual(true, test.CannotEvaluate);
-        }
-
-
-        // This shouldn't be a concern based on how the variables are passed into the method, but assuming the user supplied a non-operator character as their operator.
-        [TestMethod]
-        public void EvaluatorChangesBoolWhenItCannotEvaluateAnExpression()
-        {
-            Evaluator test = new Evaluator();
-            test.EvaluateUserInput(2, 0, 'b');
-
-            Assert.AreEqual(true, test.CannotEvaluate);
+            Assert.AreEqual(testString, test.ResultFromEval);
         }
     }
 }

@@ -12,8 +12,11 @@ namespace SimpleCalculator
         {
             UserInterface UI = new UserInterface();
 
-            Console.Write(UI.Prompt());
-            UI.HandleUserInput(Console.ReadLine());
+            while (true)
+            {
+                Console.Write(UI.Prompt());
+                UI.HandleUserInput(Console.ReadLine());
+            }
         }
     }
 }

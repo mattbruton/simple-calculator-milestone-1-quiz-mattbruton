@@ -11,9 +11,9 @@ namespace SimpleCalculator
         public string LastAnswer { get; private set; }
         public string LastExpression { get; private set; }
 
-        public void SetLastAnswer(int num)
+        public void SetLastAnswer(string numString)
         {
-            LastAnswer = num.ToString();
+            LastAnswer = numString;
         }
 
         public void SetLastExpression(int v1, int v2, char op)

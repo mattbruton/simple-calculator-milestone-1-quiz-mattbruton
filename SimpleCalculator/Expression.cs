@@ -11,7 +11,7 @@ namespace SimpleCalculator
 
         public bool IsValidInput;
 
-        private Regex regexPattern = new Regex(@"^(\s*(?<Value1>\d+)\s*(?<Operator>[+-/%*])\s*(?<Value2>\d+)\s*)$");
+        private Regex regexPattern = new Regex(@"^(\s*(?<Value1>[-]?\d+)\s*(?<Operator>[+-/%*])\s*(?<Value2>[-]?\d+)\s*)$");
 
         public void CheckInputForPattern(string input)
         {

@@ -1,53 +1,54 @@
 ﻿using System;
+using SimpleCalculator.Operations;
 
 namespace SimpleCalculator
 {
     public class Evaluator
     {
-        public int ResultFromEval { get; private set; }
-        public bool CannotEvaluate = false;
+        Stack stack = new Stack();
+
+        public string ResultFromEval { get; private set; }
+        public void ResetResult()
+        {
+            ResultFromEval = "";
+        }
 
         public void EvaluateUserInput(int v1, int v2, char op)
         {
-            Stack stack = new Stack();
             stack.SetLastExpression(v1, v2, op);
             switch (op)
             {
                 case '+':
-                    ResultFromEval = v1 + v2;
+                    Add add = new Add();
+                    ResultFromEval = add.Operate(v1, v2);
                     stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 case '-':
-                    ResultFromEval = v1 - v2;
+                    Subtract sub = new Subtract();
+                    ResultFromEval = sub.Operate(v1, v2);
                     stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 case '/':
-                    try
-                    {
-                        ResultFromEval = v1 / v2;
-                        stack.SetLastAnswer(ResultFromEval);
-                    }
-                    catch (DivideByZeroException)
-                    {
-                        CannotEvaluate = true;
-                        break;
-                    }
+                    Divide div = new Divide();
+                    ResultFromEval = div.Operate(v1, v2);
+                    stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 case '*':
-                    ResultFromEval = v1 * v2;
+                    Multiply mul = new Multiply();
+                    ResultFromEval = mul.Operate(v1, v2);
                     stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 case '%':
-                    ResultFromEval = v1 % v2;
+                    Modulus mod = new Modulus();
+                    ResultFromEval = mod.Operate(v1, v2);
                     stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 default:
-                    CannotEvaluate = true;
                     break;
             }
         }
