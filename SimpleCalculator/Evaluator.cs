@@ -17,31 +17,26 @@ namespace SimpleCalculator
                 case '+':
                     Add add = new Add();
                     ResultFromEval = add.Operate(v1, v2);
-                    stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 case '-':
                     Subtract sub = new Subtract();
                     ResultFromEval = sub.Operate(v1, v2);
-                    stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 case '/':
                     Divide div = new Divide();
                     ResultFromEval = div.Operate(v1, v2);
-                    stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 case '*':
                     Multiply mul = new Multiply();
                     ResultFromEval = mul.Operate(v1, v2);
-                    stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 case '%':
                     Modulus mod = new Modulus();
                     ResultFromEval = mod.Operate(v1, v2);
-                    stack.SetLastAnswer(ResultFromEval);
                     break;
 
                 default:
