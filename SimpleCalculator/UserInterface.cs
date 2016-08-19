@@ -6,6 +6,7 @@ namespace SimpleCalculator
     {
         Expression exp = new Expression();
         Evaluator eval = new Evaluator();
+        Constants con = new Constants();
         Stack stack = new Stack();
 
         public int PromptCounter = 0;
@@ -48,17 +49,20 @@ namespace SimpleCalculator
                         break;
                     }
                 default:
-                    exp.CheckIfUserInputIsValid(input);
-                    eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
-                    if (exp.IsValidInput)
+                    if (!con.IsInputANewConst(input))
                     {
-                        Console.WriteLine(string.Format("{0} {1}", AnswerPrefix(), eval.ResultFromEval));
-                        stack.SetLastExpression(exp.Value_1, exp.Value_2, exp.Operator);
-                        stack.SetLastAnswer(eval.ResultFromEval);
-                    }
-                    else
-                    {
-                        Console.WriteLine(ErrorMessages.InvalidFormat());
+                        exp.CheckIfUserInputIsValid(input);
+                        eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
+                        if (exp.IsValidInput)
+                        {
+                            Console.WriteLine(string.Format("{0} {1}", AnswerPrefix(), eval.ResultFromEval));
+                            stack.SetLastExpression(exp.Value_1, exp.Value_2, exp.Operator);
+                            stack.SetLastAnswer(eval.ResultFromEval);
+                        }
+                        else
+                        {
+                            Console.WriteLine(ErrorMessages.InvalidFormat());
+                        }
                     }
                     break;
             }

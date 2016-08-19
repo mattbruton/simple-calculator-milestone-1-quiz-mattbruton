@@ -2,11 +2,6 @@
 {
     public static class ErrorMessages
     {
-        public static string InvalidInput()
-        {
-            return "Invalid input - ";
-        }
-
         public static string DivideByZero()
         {
             return "You cannot divide by zero.";

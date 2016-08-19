@@ -10,10 +10,12 @@ namespace SimpleCalculator
         public char Operator { get; private set; }
 
         public bool IsValidInput;
+        public bool UsingConstInInput = false;
 
         private Regex regexPattern = new Regex(@"^(\s*(?<Value1>[-]?\d+)\s*(?<Operator>[+-/%*])\s*(?<Value2>[-]?\d+)\s*)$");
+        private Regex constPattern = new Regex(@"^(\s*(?<Value1>[A-Za-z])\s*[=]\s*(?<Value2>[-]?\d+)\s*)$");
 
-        public void CheckInputForPattern(string input)
+        private void CheckInputForStandardPattern(string input)
         {
             Match expressionMatch = regexPattern.Match(input);
             AssignUserValuesToProperties(expressionMatch);  
@@ -22,9 +24,11 @@ namespace SimpleCalculator
         public void CheckIfUserInputIsValid(string input)
         {
             try
-            {
-                CheckInputForPattern(input);
-                IsValidInput = true;
+            {   if (!UsingConstInInput)
+                {
+                    CheckInputForStandardPattern(input);
+                    IsValidInput = true;
+                }
             }
             catch (FormatException)
             {
