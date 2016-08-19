@@ -29,14 +29,19 @@ namespace SimpleCalculator
                 else
                 {
                     AddConstantToDictionary(newConst, newValue);
-                    Console.WriteLine("Success");
+                    Console.WriteLine(ConstantAddedMessage(newConst, newValue.ToString()));
                 }
-                    return true;
+                return true;
             }
             else
             {
                 return false;
             }
+        }
+
+        public string ConstantAddedMessage(string cons, string val)
+        {
+            return string.Format("'{0}' saved as '{1}'", cons, val);
         }
 
         public void ParseNewConst(Match match)
@@ -48,11 +53,6 @@ namespace SimpleCalculator
         public void AddConstantToDictionary(string cons, int val)
         {
             ConstantList.Add(cons, val);
-        }
-
-        public bool CheckForExistingConstant()
-        {
-            return false;
         }
     }
 }

@@ -21,11 +21,6 @@ namespace SimpleCalculator
             return "   =";
         }
 
-        public string ConstantAddedMessage(string cons, string val)
-        {
-            return string.Format("{0} '{1}' saved as '{2}'", AnswerPrefix(), cons, val);
-        }
-
         public void HandleUserInput(string input)
         {
             switch (input)

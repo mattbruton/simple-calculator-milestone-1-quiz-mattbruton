@@ -14,7 +14,7 @@
 
         public static string ConstantAlreadyHasValue()
         {
-            return "That constant has already been assigned a value. Please select a different one.";
+            return "That constant has already been assigned a value.";
         }
 
         public static string InvalidFormat()
