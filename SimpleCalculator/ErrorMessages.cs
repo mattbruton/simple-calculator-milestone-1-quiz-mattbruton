@@ -24,7 +24,7 @@
 
         public static string InvalidFormat()
         {
-            return "Please enter an expression to evaluate, 'last' to see the last answer, 'lastp' to see the last entered command or expression, or type either 'quit' or 'exit' to end the application.";
+            return "\nInvalid input.\nPlease enter one of the following:\n\nA valid expression: i.e. 2 + 2\n\nSet a constant: i.e. x = 2 (note, you can only set this once per constant)\n\n\"last\": Returns the last answer provided by calculator\n\n\"lastp\": Returns the last expression entered\n\n\"exit\" or \"quit\": exits program\n";
         }
     }
 }
