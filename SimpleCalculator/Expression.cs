@@ -7,16 +7,16 @@ namespace SimpleCalculator
     {
         Evaluator eval = new Evaluator();
 
-        public int Value_1 { get; set; }
-        public int Value_2 { get; set; }
-        public char Operator { get; set; }
+        public int Value_1 { get; private set; }
+        public int Value_2 { get; private set; }
+        public char Operator { get; private set; }
 
         public bool IsValidInput;
         public bool UsingConstInInput = false;
 
         private Regex regexPattern = new Regex(@"^(\s*(?<Value1>[-]?\d+)\s*(?<Operator>[+-/%*])\s*(?<Value2>[-]?\d+)\s*)$");
-        public Regex constPattern = new Regex(@"^(\s*(?<Value1>[A-Za-z])\s*(?<Operator>[+-/%*])\s*(?<Value2>[-]?\d+)\s*)$");
-        public Regex constPattern2 = new Regex(@"^(\s*(?<Value1>[-]?\d*)\s*(?<Operator>[+-/%*])\s*(?<Value2>[A-Za-z])\s*)$");
+        private Regex constPattern = new Regex(@"^(\s*(?<Value1>[A-Za-z])\s*(?<Operator>[+-/%*])\s*(?<Value2>[-]?\d+)\s*)$");
+        private Regex constPattern2 = new Regex(@"^(\s*(?<Value1>[-]?\d*)\s*(?<Operator>[+-/%*])\s*(?<Value2>[A-Za-z])\s*)$");
 
         public bool CheckInputForStandardPattern(string input)
         {
@@ -81,16 +81,30 @@ namespace SimpleCalculator
 
         private void AssignConstant1PatternValuesToProperties(Match match)
         {
-            Value_2 = Convert.ToInt32(match.Groups["Value2"].Value);
-            Value_1 = Constants.ConstantList[match.Groups["Value1"].Value];
-            Operator = Convert.ToChar(match.Groups["Operator"].Value);
+            if (Constants.ConstantList.ContainsKey(match.Groups["Value1"].Value))
+            {
+                Value_2 = Convert.ToInt32(match.Groups["Value2"].Value);
+                Value_1 = Constants.ConstantList[match.Groups["Value1"].Value];
+                Operator = Convert.ToChar(match.Groups["Operator"].Value);
+            }
+            else
+            {
+                Console.Write(ErrorMessages.ConstantNotDefined());
+            }
         }
 
         private void AssignConstant2PatternValuesToProperties(Match match)
         {
-            Value_1 = Convert.ToInt32(match.Groups["Value1"].Value);
-            Value_2 = Constants.ConstantList[match.Groups["Value2"].Value];
-            Operator = Convert.ToChar(match.Groups["Operator"].Value);
+            if (Constants.ConstantList.ContainsKey(match.Groups["Value2"].Value))
+            {
+                Value_1 = Convert.ToInt32(match.Groups["Value1"].Value);
+                Value_2 = Constants.ConstantList[match.Groups["Value2"].Value];
+                Operator = Convert.ToChar(match.Groups["Operator"].Value);
+            }
+            else
+            {
+                Console.Write(ErrorMessages.ConstantNotDefined());
+            }
         }
     }
 }

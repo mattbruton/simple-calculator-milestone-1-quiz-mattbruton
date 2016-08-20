@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
 namespace SimpleCalculator
 {
@@ -59,7 +58,6 @@ namespace SimpleCalculator
                                 Console.WriteLine(ErrorMessages.InvalidFormat());
                             }
                         }
-                    
                     break;
             }
             PromptCounter++;

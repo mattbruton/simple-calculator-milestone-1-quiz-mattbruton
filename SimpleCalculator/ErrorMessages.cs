@@ -9,7 +9,7 @@
 
         public static string ConstantNotDefined()
         {
-            return "Constant is not defined yet.";
+            return "Constant is not defined.";
         }
 
         public static string ConstantAlreadyHasValue()
