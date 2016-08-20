@@ -19,10 +19,18 @@ namespace SimpleCalculator
         public Regex constPattern = new Regex(@"^(\s*(?<Value1>[A-Za-z])\s*(?<Operator>[+-/%*])\s*(?<Value2>[-]?\d+)\s*)$");
         public Regex constPattern2 = new Regex(@"^(\s*(?<Value1>[-]?\d*)\s*(?<Operator>[+-/%*])\s*(?<Value2>[A-Za-z])\s*)$");
 
-        public void CheckInputForStandardPattern(string input)
+        public bool CheckInputForStandardPattern(string input)
         {
             Match expressionMatch = regexPattern.Match(input);
-            AssignUserValuesToProperties(expressionMatch);  
+            if(expressionMatch.Success)
+            {
+                AssignUserValuesToProperties(expressionMatch);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool CheckInputForConstPattern(string input)
