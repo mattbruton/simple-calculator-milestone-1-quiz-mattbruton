@@ -38,6 +38,7 @@ namespace SimpleCalculator
             Match constMatch = constPattern.Match(input);
             if (constMatch.Success)
             {
+                AssignConstant1PatternValuesToProperties(constMatch);
                 return true;
             }
             else
@@ -51,6 +52,7 @@ namespace SimpleCalculator
             Match constMatch = constPattern2.Match(input);
             if (constMatch.Success)
             {
+                AssignConstant2PatternValuesToProperties(constMatch);
                 return true;
             }
             else
@@ -61,12 +63,11 @@ namespace SimpleCalculator
 
         public void CheckIfUserInputIsValid(string input)
         {
-            try
-            {   
-                CheckInputForStandardPattern(input);
+            if (CheckInputForStandardPattern(input) || CheckInputForConstPattern2(input) || CheckInputForConstPattern(input))
+            {  
                 IsValidInput = true;
             }
-            catch (FormatException)
+            else
             {
                 IsValidInput = false;
             }
@@ -76,6 +77,20 @@ namespace SimpleCalculator
         {
             Value_1 = Convert.ToInt32(match.Groups["Value1"].Value);
             Value_2 = Convert.ToInt32(match.Groups["Value2"].Value);
+            Operator = Convert.ToChar(match.Groups["Operator"].Value);
+        }
+
+        private void AssignConstant1PatternValuesToProperties(Match match)
+        {
+            Value_2 = Convert.ToInt32(match.Groups["Value2"].Value);
+            Value_1 = con.ConstantList[match.Groups["Value1"].Value];
+            Operator = Convert.ToChar(match.Groups["Operator"].Value);
+        }
+
+        private void AssignConstant2PatternValuesToProperties(Match match)
+        {
+            Value_1 = Convert.ToInt32(match.Groups["Value1"].Value);
+            Value_2 = con.ConstantList[match.Groups["Value2"].Value];
             Operator = Convert.ToChar(match.Groups["Operator"].Value);
         }
     }

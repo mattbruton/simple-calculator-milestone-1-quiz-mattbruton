@@ -27,20 +27,12 @@ namespace SimpleCalculator
             if (exp.CheckInputForConstPattern(input))
             {
                 Match constMatch = exp.constPattern.Match(input);
-                exp.Value_2 = Convert.ToInt32(constMatch.Groups["Value2"].Value);
-                exp.Value_1 = con.ConstantList[constMatch.Groups["Value1"].Value];
-                exp.Operator = Convert.ToChar(constMatch.Groups["Operator"].Value);
                 eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
-                exp.IsValidInput = true;
             }
             else if (exp.CheckInputForConstPattern2(input))
             {
                 Match constMatch = exp.constPattern2.Match(input);
-                exp.Value_1 = Convert.ToInt32(constMatch.Groups["Value1"].Value);
-                exp.Value_2 = con.ConstantList[constMatch.Groups["Value2"].Value];
-                exp.Operator = Convert.ToChar(constMatch.Groups["Operator"].Value);
                 eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
-                exp.IsValidInput = true;
             }
             else
             {
@@ -73,20 +65,21 @@ namespace SimpleCalculator
                 default:
                     if (!con.IsInputANewConst(input))
                     {
-
-                        CheckInputPattern(input);
-                        eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
-                        if (exp.IsValidInput)
-                        {
-                            Console.WriteLine(string.Format("{0} {1}", AnswerPrefix(), eval.ResultFromEval));
-                            stack.SetLastExpression(exp.Value_1, exp.Value_2, exp.Operator);
-                            stack.SetLastAnswer(eval.ResultFromEval);
+                            exp.CheckIfUserInputIsValid(input);
+                            CheckInputPattern(input);
+                            eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
+                            if (exp.IsValidInput)
+                            {
+                                Console.WriteLine(string.Format("{0} {1}", AnswerPrefix(), eval.ResultFromEval));
+                                stack.SetLastExpression(exp.Value_1, exp.Value_2, exp.Operator);
+                                stack.SetLastAnswer(eval.ResultFromEval);
+                            }
+                            else
+                            {
+                                Console.WriteLine(ErrorMessages.InvalidFormat());
+                            }
                         }
-                        else
-                        {
-                            Console.WriteLine(ErrorMessages.InvalidFormat());
-                        }
-                    }
+                    
                     break;
             }
             PromptCounter++;
