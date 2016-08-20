@@ -59,43 +59,35 @@ namespace SimpleCalculator.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException))]
-        public void FormatExeptionThrownOnInvalidValue()
+        public void ReturnFalseWhenInvalidValue()
         {
             Expression test = new Expression();
-            test.CheckInputForStandardPattern("2+bad");
 
-            Assert.Fail();
+            Assert.IsFalse(test.CheckInputForStandardPattern("2+bad"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException))]
-        public void FormatExeptionThrownOnInvalidOperatorChar()
+        public void ReturnFalseWhenInvalidOperatorChar()
         {
             Expression test = new Expression();
-            test.CheckInputForStandardPattern("2^2");
 
-            Assert.Fail();
+            Assert.IsFalse(test.CheckInputForStandardPattern("2^2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException))]
-        public void FormatExeptionThrownOnMissingTerm()
+        public void ReturnFalseWhenMissingTerm()
         {
             Expression test = new Expression();
-            test.CheckInputForStandardPattern("+2");
 
-            Assert.Fail();
+            Assert.IsFalse(test.CheckInputForStandardPattern("+2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException))]
-        public void FormatExeptionThrownOnMissingOperatorTerm()
+        public void ReturnFalseWhenMissingOperatorTerm()
         {
             Expression test = new Expression();
-            test.CheckInputForStandardPattern("12");
 
-            Assert.Fail();
+            Assert.IsFalse(test.CheckInputForStandardPattern("12"));
         }
     }
 }
