@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
@@ -10,6 +6,13 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
+            UserInterface UI = new UserInterface();
+
+            while (true)
+            {
+                Console.Write(UI.Prompt());
+                UI.HandleInput(Console.ReadLine());
+            }
         }
     }
 }

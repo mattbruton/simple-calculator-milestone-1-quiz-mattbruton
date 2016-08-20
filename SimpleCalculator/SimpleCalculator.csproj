@@ -43,8 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="ErrorMessages.cs" />
+    <Compile Include="Evaluator.cs" />
+    <Compile Include="Expression.cs" />
+    <Compile Include="Operations\Add.cs" />
+    <Compile Include="Operations\Divide.cs" />
+    <Compile Include="Operations\Modulo.cs" />
+    <Compile Include="Operations\Multiply.cs" />
+    <Compile Include="Operations\Operation.cs" />
+    <Compile Include="Operations\Subtract.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stack.cs" />
+    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
