@@ -10,13 +10,13 @@ namespace SimpleCalculator.Tests
         [TestMethod]
         public void ConstantIsInputANewConstReturnsTrueIfNewConst()
         {
-            Assert.AreEqual(true, Constants.IsInputANewConst("n = 2"));
+            Assert.IsTrue(Constants.IsInputANewConst("n = 2"));
         }
 
         [TestMethod]
         public void ConstantIsInputANewConstReturnsFalseIfInputDoesNotMatchPattern()
         {
-            Assert.AreEqual(false, Constants.IsInputANewConst("n + 2"));
+            Assert.IsFalse(Constants.IsInputANewConst("n + 2"));
         }
     }
 }

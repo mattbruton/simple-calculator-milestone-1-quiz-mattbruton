@@ -32,7 +32,7 @@ namespace SimpleCalculator
             }
         }
 
-        public bool CheckInputForConstPattern(string input)
+        private bool CheckInputForConstPattern(string input)
         {
             Match constMatch = constPattern.Match(input);
             if (constMatch.Success)
@@ -46,7 +46,7 @@ namespace SimpleCalculator
             }
         }
 
-        public bool CheckInputForConstPattern2(string input)
+        private bool CheckInputForConstPattern2(string input)
         {
             Match constMatch = constPattern2.Match(input);
             if (constMatch.Success)

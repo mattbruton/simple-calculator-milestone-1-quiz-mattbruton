@@ -15,6 +15,42 @@ namespace SimpleCalculator.Tests
         }
 
         [TestMethod]
+        public void ExpressionReturnsTrueWhenInputIsValidStandardPattern()
+        {
+            Expression test = new Expression();
+            test.CheckIfUserInputIsValid("2 + 2");
+
+            Assert.IsTrue(test.IsValidInput);
+        }
+
+        [TestMethod]
+        public void ExpressionReturnsTrueWhenInputIsValidConst1Pattern()
+        {
+            Expression test = new Expression();
+            test.CheckIfUserInputIsValid("a + 2");
+
+            Assert.IsTrue(test.IsValidInput);
+        }
+
+        [TestMethod]
+        public void ExpressionReturnsTrueWhenInputIsValidConst2Pattern()
+        {
+            Expression test = new Expression();
+            test.CheckIfUserInputIsValid("2 + b");
+
+            Assert.IsTrue(test.IsValidInput);
+        }
+
+        [TestMethod]
+        public void ExpressionReturnsFalseWhenInputIsInvalidPattern()
+        {
+            Expression test = new Expression();
+            test.CheckIfUserInputIsValid("hello + there");
+
+            Assert.IsFalse(test.IsValidInput);
+        }
+
+        [TestMethod]
         public void AssertCanCaptureTermsOfValidInput()
         {
             Expression test = new Expression();
