@@ -18,7 +18,7 @@ namespace SimpleCalculator.Tests
         public void AssertCanCaptureTermsOfValidInput()
         {
             Expression test = new Expression();
-            test.CheckInputForPattern("2+2");
+            test.CheckInputForStandardPattern("2+2");
 
             Assert.AreEqual(2, test.Value_1);
             Assert.AreEqual(2, test.Value_2);
@@ -29,7 +29,7 @@ namespace SimpleCalculator.Tests
         public void AssertCanCaptureWithExtraSpacingBeforeOperator()
         {
             Expression test = new Expression();
-            test.CheckInputForPattern("   2+2");
+            test.CheckInputForStandardPattern("   2+2");
 
             Assert.AreEqual(2, test.Value_1);
             Assert.AreEqual(2, test.Value_2);
@@ -40,7 +40,7 @@ namespace SimpleCalculator.Tests
         public void AssertCanCaptureWithExtraSpacingAfterOperator()
         {
             Expression test = new Expression();
-            test.CheckInputForPattern("2+      2");
+            test.CheckInputForStandardPattern("2+      2");
 
             Assert.AreEqual(2, test.Value_1);
             Assert.AreEqual(2, test.Value_2);
@@ -51,7 +51,7 @@ namespace SimpleCalculator.Tests
         public void AssertCanCaptureWithExtraSpacingOnBothSidesOfOperator()
         {
             Expression test = new Expression();
-            test.CheckInputForPattern("2       -      2");
+            test.CheckInputForStandardPattern("2       -      2");
 
             Assert.AreEqual(2, test.Value_1);
             Assert.AreEqual(2, test.Value_2);
@@ -63,7 +63,7 @@ namespace SimpleCalculator.Tests
         public void FormatExeptionThrownOnInvalidValue()
         {
             Expression test = new Expression();
-            test.CheckInputForPattern("2+bad");
+            test.CheckInputForStandardPattern("2+bad");
 
             Assert.Fail();
         }
@@ -73,7 +73,7 @@ namespace SimpleCalculator.Tests
         public void FormatExeptionThrownOnInvalidOperatorChar()
         {
             Expression test = new Expression();
-            test.CheckInputForPattern("2^2");
+            test.CheckInputForStandardPattern("2^2");
 
             Assert.Fail();
         }
@@ -83,7 +83,7 @@ namespace SimpleCalculator.Tests
         public void FormatExeptionThrownOnMissingTerm()
         {
             Expression test = new Expression();
-            test.CheckInputForPattern("+2");
+            test.CheckInputForStandardPattern("+2");
 
             Assert.Fail();
         }
@@ -93,7 +93,7 @@ namespace SimpleCalculator.Tests
         public void FormatExeptionThrownOnMissingOperatorTerm()
         {
             Expression test = new Expression();
-            test.CheckInputForPattern("12");
+            test.CheckInputForStandardPattern("12");
 
             Assert.Fail();
         }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace SimpleCalculator
@@ -22,14 +19,14 @@ namespace SimpleCalculator
             if (constMatch.Success)
             {
                 ParseNewConst(constMatch);
-                if (ConstantList.ContainsKey(newConst))
+                if (ConstantList.ContainsKey(newConst.ToLower()))
                 {
                     Console.WriteLine(ErrorMessages.ConstantAlreadyHasValue());
                 }
                 else
                 {
                     AddConstantToDictionary(newConst, newValue);
-                    Console.WriteLine(ConstantAddedMessage(newConst, newValue.ToString()));
+                    Console.WriteLine(ConstantAddedMessage(newConst.ToLower(), newValue.ToString()));
                 }
                 return true;
             }
@@ -39,20 +36,20 @@ namespace SimpleCalculator
             }
         }
 
-        public string ConstantAddedMessage(string cons, string val)
+        private string ConstantAddedMessage(string cons, string val)
         {
             return string.Format("'{0}' saved as '{1}'", cons, val);
         }
 
-        public void ParseNewConst(Match match)
+        private void ParseNewConst(Match match)
         {
             newConst = match.Groups["Value1"].Value;
             newValue = Convert.ToInt32(match.Groups["Value2"].Value);
         }
 
-        public void AddConstantToDictionary(string cons, int val)
+        private void AddConstantToDictionary(string cons, int val)
         {
-            ConstantList.Add(cons, val);
+            ConstantList.Add(cons.ToLower(), val);
         }
     }
 }

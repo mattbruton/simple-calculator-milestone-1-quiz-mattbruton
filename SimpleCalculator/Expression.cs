@@ -13,22 +13,64 @@ namespace SimpleCalculator
         public bool UsingConstInInput = false;
 
         private Regex regexPattern = new Regex(@"^(\s*(?<Value1>[-]?\d+)\s*(?<Operator>[+-/%*])\s*(?<Value2>[-]?\d+)\s*)$");
-        private Regex constPattern = new Regex(@"^(\s*(?<Value1>[A-Za-z])\s*[=]\s*(?<Value2>[-]?\d+)\s*)$");
+        private Regex constPattern = new Regex(@"^(\s*(?<Value1>[A-Za-z])\s*(?<Operator>[+-/%*])\s*(?<Value2>[-]?\d+)\s*)$");
+        private Regex constPattern2 = new Regex(@"^(\s*(?<Value1>[-]?\d*)\s*(?<Operator>[+-/%*])\s*(?<Value2>[A-Za-z])\s*)$");
 
-        private void CheckInputForStandardPattern(string input)
+        public void CheckInputForStandardPattern(string input)
         {
             Match expressionMatch = regexPattern.Match(input);
             AssignUserValuesToProperties(expressionMatch);  
         }
-        
+
+        private bool CheckInputForConstPattern(string input)
+        {
+            Match constMatch = constPattern.Match(input);
+            if (constMatch.Success)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool CheckInputForConstPattern2(string input)
+        {
+            Match constMatch = constPattern2.Match(input);
+            if (constMatch.Success)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void ConvertConstToInt(string input)
+        {
+            if (CheckInputForConstPattern(input))
+            {
+
+            }
+            else if (CheckInputForConstPattern2(input))
+            {
+
+            }
+            else
+            {
+                CheckInputForStandardPattern(input);
+            }
+
+        }
+
         public void CheckIfUserInputIsValid(string input)
         {
             try
-            {   if (!UsingConstInInput)
-                {
-                    CheckInputForStandardPattern(input);
-                    IsValidInput = true;
-                }
+            {   
+                CheckInputForStandardPattern(input);
+                IsValidInput = true;
             }
             catch (FormatException)
             {
