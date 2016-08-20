@@ -1,5 +1,4 @@
-﻿using System;
-using SimpleCalculator.Operations;
+﻿using SimpleCalculator.Operations;
 
 namespace SimpleCalculator
 {

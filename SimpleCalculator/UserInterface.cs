@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace SimpleCalculator
 {
@@ -21,7 +22,33 @@ namespace SimpleCalculator
             return "   =";
         }
 
-        public void HandleUserInput(string input)
+        public void CheckInputPattern(string input)
+        {
+            if (exp.CheckInputForConstPattern(input))
+            {
+                Match constMatch = exp.constPattern.Match(input);
+                exp.Value_2 = Convert.ToInt32(constMatch.Groups["Value2"].Value);
+                exp.Value_1 = con.ConstantList[constMatch.Groups["Value1"].Value];
+                exp.Operator = Convert.ToChar(constMatch.Groups["Operator"].Value);
+                eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
+                exp.IsValidInput = true;
+            }
+            else if (exp.CheckInputForConstPattern2(input))
+            {
+                Match constMatch = exp.constPattern2.Match(input);
+                exp.Value_1 = Convert.ToInt32(constMatch.Groups["Value1"].Value);
+                exp.Value_2 = con.ConstantList[constMatch.Groups["Value2"].Value];
+                exp.Operator = Convert.ToChar(constMatch.Groups["Operator"].Value);
+                eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
+                exp.IsValidInput = true;
+            }
+            else
+            {
+                exp.CheckIfUserInputIsValid(input);
+            }
+        }
+
+        public void HandleInput(string input)
         {
             switch (input)
             {
@@ -46,7 +73,8 @@ namespace SimpleCalculator
                 default:
                     if (!con.IsInputANewConst(input))
                     {
-                        exp.CheckIfUserInputIsValid(input);
+
+                        CheckInputPattern(input);
                         eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
                         if (exp.IsValidInput)
                         {
