@@ -7,7 +7,6 @@ namespace SimpleCalculator
     {
         Expression exp = new Expression();
         Evaluator eval = new Evaluator();
-        Constants con = new Constants();
         Stack stack = new Stack();
 
         public int PromptCounter = 0;
@@ -20,24 +19,6 @@ namespace SimpleCalculator
         private string AnswerPrefix()
         {
             return "   =";
-        }
-
-        public void CheckInputPattern(string input)
-        {
-            if (exp.CheckInputForConstPattern(input))
-            {
-                Match constMatch = exp.constPattern.Match(input);
-                eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
-            }
-            else if (exp.CheckInputForConstPattern2(input))
-            {
-                Match constMatch = exp.constPattern2.Match(input);
-                eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
-            }
-            else
-            {
-                exp.CheckIfUserInputIsValid(input);
-            }
         }
 
         public void HandleInput(string input)
@@ -63,10 +44,9 @@ namespace SimpleCalculator
                         break;
                     }
                 default:
-                    if (!con.IsInputANewConst(input))
+                    if (!Constants.IsInputANewConst(input))
                     {
                             exp.CheckIfUserInputIsValid(input);
-                            CheckInputPattern(input);
                             eval.EvaluateUserInput(exp.Value_1, exp.Value_2, exp.Operator);
                             if (exp.IsValidInput)
                             {

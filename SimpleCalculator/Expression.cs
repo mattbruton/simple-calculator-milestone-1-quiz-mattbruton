@@ -5,7 +5,6 @@ namespace SimpleCalculator
 {
     public class Expression
     {
-        Constants con = new Constants();
         Evaluator eval = new Evaluator();
 
         public int Value_1 { get; set; }
@@ -83,14 +82,14 @@ namespace SimpleCalculator
         private void AssignConstant1PatternValuesToProperties(Match match)
         {
             Value_2 = Convert.ToInt32(match.Groups["Value2"].Value);
-            Value_1 = con.ConstantList[match.Groups["Value1"].Value];
+            Value_1 = Constants.ConstantList[match.Groups["Value1"].Value];
             Operator = Convert.ToChar(match.Groups["Operator"].Value);
         }
 
         private void AssignConstant2PatternValuesToProperties(Match match)
         {
             Value_1 = Convert.ToInt32(match.Groups["Value1"].Value);
-            Value_2 = con.ConstantList[match.Groups["Value2"].Value];
+            Value_2 = Constants.ConstantList[match.Groups["Value2"].Value];
             Operator = Convert.ToChar(match.Groups["Operator"].Value);
         }
     }
